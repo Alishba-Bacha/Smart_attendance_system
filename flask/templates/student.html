@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1>Student Dashboard</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Class</th>
+        </tr>
+        {% for record in attendance_records %}
+        <tr>
+            <td>{{ record.Date }}</td>
+            <td>{{ record.Day }}</td>
+            <td>{{ record.Class }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/logout">Logout</a>
+</body>
+</html>
