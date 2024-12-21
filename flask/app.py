@@ -1,14 +1,14 @@
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from ultralytics import YOLO
 import os
-import csv
 import sqlite3
 from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from werkzeug.utils import secure_filename
-from ultralytics import YOLO
 
 # Initialize Flask App
-app = Flask(__name__)
+app = Flask(_name_)
 app.secret_key = "secretkey"
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -18,7 +18,7 @@ UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # YOLO model
-model = YOLO('yolov8n.pt')
+model = YOLO('yolo11n.pt')
 
 DATABASE = "attendance_system.db"
 
@@ -47,7 +47,7 @@ def init_db():
 
 # User Authentication
 class User(UserMixin):
-    def __init__(self, id, username, role):
+    def _init_(self, id, username, role):
         self.id = id
         self.username = username
         self.role = role
@@ -123,11 +123,11 @@ def teacher_dashboard():
             filename = secure_filename(file.filename)
             filepath = os.path.join(UPLOAD_FOLDER, filename)
             file.save(filepath)
-            
+
             # Detect students
             results = model.predict(source=filepath, save=True)
             detected_students = [result.label for result in results[0].boxes.data]
-            
+
             # Mark attendance
             mark_attendance(detected_students)
             flash(f"Attendance marked for {len(detected_students)} students.")
@@ -162,6 +162,6 @@ def mark_attendance(detected_students):
                            (current_date, current_day, "Class A", regno))
         conn.commit()
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     init_db()
     app.run(debug=True)
