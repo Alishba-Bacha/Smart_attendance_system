@@ -1,0 +1,6 @@
+Flask
+Flask-Login
+Werkzeug
+ultralytics
+sqlite3
+torch
