@@ -1,25 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        /* University Badge and Name (Top Left) */
+        .university-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .badge {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .university-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Sign Up Form Container */
+        .signup-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .signup-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4177cd;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Sign Up</h1>
-    <form action="/signup" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br>
+    <!-- Sign Up Form Container -->
+    <div class="signup-container">
+        <h1>Sign Up</h1>
+        <form action="/signup" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required><br>
+    
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+    
+            <label for="role">Sign up as:</label>
+            <select name="role" id="role">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select><br><br>
+    
+            <button type="submit">Sign Up</button>
+        </form>
+        <a href="/login">Already have an account? Login here.</a>
 
-        <label for="role">Sign up as:</label>
-        <select name="role" id="role">
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
-        </select><br><br>
+    </div>
 
-        <button type="submit">Sign Up</button>
-    </form>
-    <a href="/login">Already have an account? Login here.</a>
 </body>
 </html>

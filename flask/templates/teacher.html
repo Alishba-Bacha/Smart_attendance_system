@@ -1,15 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        .dashboard-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="file"], select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
 </head>
 <body>
-    <h1>Teacher Dashboard</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <label for="group_photo">Upload Group Photo:</label>
-        <input type="file" name="group_photo" required>
-        <button type="submit">Mark Attendance</button>
-    </form>
-    <a href="/logout">Logout</a>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Teacher Dashboard</h1>
+    </header>
+
+    <!-- Teacher Dashboard -->
+    <div class="dashboard-container">
+        <!-- Displaying the username -->
+        <p><strong>Username:</strong> {{ current_user.username }}</p> <!-- Fetches the username of the currently logged-in teacher -->
+
+        <!-- Dropdown for courses the teacher is teaching -->
+        <label for="courses">Select Course:</label>
+        <select name="courses" id="courses" required>
+            {% for course in courses %}
+                <option value="{{ course.code }}">{{ course.name }}</option> <!-- Displays courses the teacher is teaching -->
+            {% endfor %}
+        </select>
+
+        <!-- Input for section -->
+        <label for="section">Section:</label>
+        <input type="text" name="section" id="section" placeholder="Enter the section (e.g. A, B, 1, 2)" required>
+
+        <!-- Form to mark attendance -->
+        <form method="POST" enctype="multipart/form-data">
+            <label for="group_photo">Upload Group Photo:</label>
+            <input type="file" name="group_photo" required> <!-- File input for group photo -->
+            <button type="submit">Mark Attendance</button>
+        </form>
+
+        <!-- Logout button -->
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
 </body>
 </html>

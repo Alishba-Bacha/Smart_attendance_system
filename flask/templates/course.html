@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .form-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Back Button */
+        .back-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Course Selection</h1>
+    </header>
+
+    <!-- Course Selection Form -->
+    <div class="form-container">
+        <form action="/submit_courses" method="post" enctype="multipart/form-data">
+            <label for="num_courses">How many courses are you teaching this semester? (Max 5)</label>
+            <input type="number" name="num_courses" id="num_courses" max="5" min="1" required>
+
+            <div id="courses-container"></div>
+
+            <label for="faculty">Faculty:</label>
+            <input type="text" name="faculty" id="faculty" placeholder="Enter the faculty name" required>
+
+            <label for="batch">Batch (Year and Section):</label>
+            <input type="text" name="batch" id="batch" placeholder="Enter batch details (e.g. Year - Section)" required>
+
+            <label for="total_students">Total Number of Students in the Faculty:</label>
+            <input type="number" name="total_students" id="total_students" required>
+
+            <!-- Upload Student Images Dataset (Folder Upload) -->
+            <label for="student_images">Upload Student Images Dataset (Max 2 GB):</label>
+            <input type="file" name="student_images" id="student_images" accept="image/*" multiple webkitdirectory required>
+
+            <button type="submit" class="form-btn">Submit</button>
+        </form>
+
+        <a href="/teacher_dashboard" class="back-btn">Back to Dashboard</a>
+    </div>
+
+    <script>
+        // Dynamically create course selection dropdowns based on number of courses the teacher is teaching
+        document.getElementById('num_courses').addEventListener('input', function() {
+            const numCourses = parseInt(this.value);
+            const container = document.getElementById('courses-container');
+            container.innerHTML = '';  // Clear any previous selections
+
+            if (numCourses > 0 && numCourses <= 5) {
+                for (let i = 0; i < numCourses; i++) {
+                    const label = document.createElement('label');
+                    label.textContent = `Course ${i + 1} Code:`;
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.name = `course_code_${i + 1}`;
+                    input.placeholder = `Enter the course code for course ${i + 1}`;
+                    input.required = true;
+
+                    container.appendChild(label);
+                    container.appendChild(input);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
