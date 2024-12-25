@@ -1,0 +1,33 @@
+path: /content/dataset/roboflow
+train: 
+  - /content/dataset/roboflow/2022002/train/images
+  - /content/dataset/roboflow/2022029/train/images
+  - /content/dataset/roboflow/2022076/train/images
+  - /content/dataset/roboflow/2022088/train/images
+  - /content/dataset/roboflow/2022624/train/images
+  - /content/dataset/roboflow/2022660/train/images
+  - /content/dataset/roboflow/2022672/train/images
+  - /content/dataset/roboflow/2022907/train/images
+  - /content/dataset/roboflow/2022909/train/images
+
+val: 
+  - /content/dataset/roboflow/2022002/valid/images
+  - /content/dataset/roboflow/2022029/valid/images
+  - /content/dataset/roboflow/2022076/valid/images
+  - /content/dataset/roboflow/2022088/valid/images
+  - /content/dataset/roboflow/2022624/valid/images
+  - /content/dataset/roboflow/2022660/valid/images
+  - /content/dataset/roboflow/2022672/valid/images
+  - /content/dataset/roboflow/2022907/valid/images
+  - /content/dataset/roboflow/2022909/valid/images
+
+names:
+  0: '2022002'
+  1: '2022029'
+  2: '2022076'
+  3: '2022088'
+  4: '2022624'
+  5: '2022660'
+  6: '2022672'
+  7: '2022907'
+  8: '2022909'
